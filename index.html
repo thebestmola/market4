@@ -3,93 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OXAVO MARKET · Buy & Sell</title>
+    <title>OXAVO MARKET</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <style>
-        /* ----- CSS VARIABLES (light & dark) ----- */
-        :root {
-            --bg-body: #f6f9fc;
-            --bg-card: #ffffff;
-            --bg-input: #ffffff;
-            --bg-header: #ffffff;
-            --bg-footer: #ffffff;
-            --border-light: #eef2f6;
-            --border-input: #dce0e5;
-            --text-primary: #0f172a;
-            --text-secondary: #1e293b;
-            --text-muted: #475569;
-            --text-light: #64748b;
-            --shadow-card: 0 8px 30px rgba(0,0,0,0.04);
-            --shadow-dropdown: 0 12px 40px rgba(0,0,0,0.08);
-            --icon-color: #6c5ce7;
-            --btn-primary-bg: #0f172a;
-            --btn-primary-hover: #6c5ce7;
-            --badge-bg: #e8e0f7;
-            --badge-text: #6c5ce7;
-            --file-label-bg: #f8f8f8;
-            --file-border: #dce0e5;
-            --toast-bg: #0f172a;
-            --toast-border: #1e293b;
-            --placeholder-color: #94a3b8;
-            --chart-grid: #eef2f6;
-            --premium-bg: #0f172a;
-            --premium-text: #f1f5f9;
-            --premium-accent: #f59e0b;
-            --premium-btn-bg: #f59e0b;
-            --premium-btn-hover: #d97706;
-            --logo-color: #6c5ce7;
-            --google-btn-bg: #ffffff;
-            --google-btn-text: #0f172a;
-            --google-btn-border: #dce0e5;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        body.dark-theme {
-            --bg-body: #0d0d1a;
-            --bg-card: #16162e;
-            --bg-input: #1a1a3a;
-            --bg-header: #0a0a1a;
-            --bg-footer: #0a0a1a;
-            --border-light: #2a2a4a;
-            --border-input: #2a2a4a;
-            --text-primary: #f1f5f9;
-            --text-secondary: #e2e8f0;
-            --text-muted: #94a3b8;
-            --text-light: #94a3b8;
-            --shadow-card: 0 8px 30px rgba(0,0,0,0.6);
-            --shadow-dropdown: 0 12px 40px rgba(0,0,0,0.6);
-            --icon-color: #8b7cf7;
-            --btn-primary-bg: #6c5ce7;
-            --btn-primary-hover: #8b7cf7;
-            --badge-bg: #2a2a5a;
-            --badge-text: #8b7cf7;
-            --file-label-bg: #1a1a3a;
-            --file-border: #2a2a4a;
-            --toast-bg: #1a1a3a;
-            --toast-border: #2a2a4a;
-            --placeholder-color: #6b6b8a;
-            --chart-grid: #2a2a4a;
-            --premium-bg: #0d0d1a;
-            --premium-text: #f1f5f9;
-            --premium-accent: #f59e0b;
-            --premium-btn-bg: #f59e0b;
-            --premium-btn-hover: #d97706;
-            --logo-color: #8b7cf7;
-            --google-btn-bg: #1a1a3a;
-            --google-btn-text: #e2e8f0;
-            --google-btn-border: #2a2a4a;
-        }
-
-        /* ----- base styles ----- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-body);
-            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            background: #f6f9fc;
+            color: #0f172a;
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -97,17 +27,32 @@
             transition: background 0.3s, color 0.3s;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+        body.dark {
+            background: #0d0d1a;
+            color: #e2e8f0;
+        }
 
-        /* ----- HEADER ----- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* HEADER */
         .header {
-            background: var(--bg-header);
+            background: #ffffff;
             padding: 16px 0;
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 1px solid #eef2f6;
             position: sticky;
             top: 0;
             z-index: 100;
             transition: background 0.3s, border-color 0.3s;
+        }
+
+        body.dark .header {
+            background: #0a0a1a;
+            border-color: #2a2a4a;
         }
 
         .header-content {
@@ -122,7 +67,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            text-decoration: none;
             cursor: pointer;
         }
 
@@ -142,14 +86,14 @@
         .logo-text .brand {
             font-size: 1.2rem;
             font-weight: 800;
-            color: var(--text-primary);
-            transition: color 0.3s;
+            color: #0f172a;
         }
-        .logo-text .brand .highlight { color: var(--logo-color); }
+        body.dark .logo-text .brand { color: #f1f5f9; }
+        .logo-text .brand .highlight { color: #6c5ce7; }
         .logo-text .sub {
             font-size: 0.5rem;
             font-weight: 500;
-            color: var(--text-light);
+            color: #64748b;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -157,49 +101,52 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .theme-toggle {
-            background: var(--bg-input);
-            border: 1px solid var(--border-input);
+            background: transparent;
+            border: 1px solid #dce0e5;
             border-radius: 40px;
-            padding: 8px 14px;
-            font-size: 0.9rem;
+            padding: 6px 14px;
+            font-size: 0.85rem;
             cursor: pointer;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: #0f172a;
+            transition: 0.3s;
+        }
+        body.dark .theme-toggle {
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
         .theme-toggle:hover {
-            border-color: var(--icon-color);
-            color: var(--icon-color);
+            border-color: #6c5ce7;
+            color: #6c5ce7;
         }
 
         .profile-icon {
             font-size: 1.5rem;
-            color: var(--text-muted);
+            color: #64748b;
             cursor: pointer;
             background: none;
             border: none;
             transition: 0.2s;
         }
-        .profile-icon:hover { color: var(--icon-color); }
+        body.dark .profile-icon { color: #94a3b8; }
+        .profile-icon:hover { color: #6c5ce7; }
 
         .cart-icon {
             font-size: 1.3rem;
-            color: var(--text-muted);
+            color: #64748b;
             cursor: pointer;
             position: relative;
             background: none;
             border: none;
             transition: 0.2s;
         }
-        .cart-icon:hover { color: var(--icon-color); }
+        body.dark .cart-icon { color: #94a3b8; }
+        .cart-icon:hover { color: #6c5ce7; }
         .cart-badge {
-            background: var(--icon-color);
+            background: #6c5ce7;
             color: white;
             border-radius: 50%;
             padding: 1px 7px;
@@ -210,19 +157,23 @@
             right: -10px;
         }
 
-        /* ----- DROPDOWN ----- */
+        /* DROPDOWN */
         .dropdown-menu {
             position: absolute;
             right: 20px;
             top: 72px;
-            background: var(--bg-card);
+            background: #ffffff;
             border-radius: 16px;
             min-width: 220px;
             padding: 8px 0;
-            box-shadow: var(--shadow-dropdown);
-            border: 1px solid var(--border-light);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            border: 1px solid #eef2f6;
             display: none;
             z-index: 50;
+        }
+        body.dark .dropdown-menu {
+            background: #16162e;
+            border-color: #2a2a4a;
         }
         .dropdown-menu.open { display: block; }
         .dropdown-item {
@@ -236,44 +187,43 @@
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
-            color: var(--text-secondary);
+            color: #0f172a;
             transition: 0.2s;
         }
-        .dropdown-item:hover { background: var(--file-label-bg); color: var(--icon-color); }
-        .dropdown-divider { height: 1px; background: var(--border-light); margin: 4px 12px; }
+        body.dark .dropdown-item { color: #e2e8f0; }
+        .dropdown-item:hover { background: #f8f8f8; color: #6c5ce7; }
+        body.dark .dropdown-item:hover { background: #1a1a3a; color: #8b7cf7; }
+        .dropdown-divider { height: 1px; background: #eef2f6; margin: 4px 12px; }
+        body.dark .dropdown-divider { background: #2a2a4a; }
 
-        /* ----- HERO ----- */
+        /* HERO */
         .hero {
-            padding: 50px 0 30px 0;
+            padding: 40px 0 20px 0;
             text-align: center;
         }
-
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 900;
             letter-spacing: -2px;
             line-height: 1.1;
-            color: var(--text-primary);
-            max-width: 800px;
-            margin: 0 auto 12px;
+            color: #0f172a;
         }
-        .hero h1 span { color: var(--icon-color); }
-
+        body.dark .hero h1 { color: #f1f5f9; }
+        .hero h1 span { color: #6c5ce7; }
         .hero p {
             font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 550px;
-            margin: 0 auto 24px;
+            color: #64748b;
+            max-width: 500px;
+            margin: 8px auto 0;
         }
+        body.dark .hero p { color: #94a3b8; }
 
-        /* ----- PRODUCTS ----- */
+        /* PRODUCTS */
         .products-section {
-            padding: 40px 0 60px 0;
-            background: var(--bg-body);
-            transition: background 0.3s;
+            padding: 30px 0 60px 0;
         }
 
-        .products-section .section-header {
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -281,12 +231,12 @@
             gap: 16px;
             margin-bottom: 24px;
         }
-
-        .products-section .section-header h2 {
-            font-size: 1.6rem;
+        .section-header h2 {
+            font-size: 1.5rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .section-header h2 { color: #f1f5f9; }
 
         .filter-group {
             display: flex;
@@ -296,23 +246,29 @@
         .filter-group select,
         .filter-group input {
             padding: 10px 16px;
-            border: 2px solid var(--border-input);
+            border: 2px solid #dce0e5;
             border-radius: 50px;
             font-size: 0.85rem;
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            background: #ffffff;
+            color: #0f172a;
             outline: none;
             transition: 0.3s;
         }
+        body.dark .filter-group select,
+        body.dark .filter-group input {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
+            color: #e2e8f0;
+        }
         .filter-group select:focus,
         .filter-group input:focus {
-            border-color: var(--icon-color);
+            border-color: #6c5ce7;
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-input);
+            color: #0f172a;
+            border: 2px solid #dce0e5;
             padding: 10px 22px;
             border-radius: 50px;
             font-weight: 600;
@@ -320,9 +276,13 @@
             cursor: pointer;
             transition: 0.3s;
         }
+        body.dark .btn-outline {
+            color: #e2e8f0;
+            border-color: #2a2a4a;
+        }
         .btn-outline:hover {
-            border-color: var(--icon-color);
-            background: var(--bg-input);
+            border-color: #6c5ce7;
+            color: #6c5ce7;
         }
 
         .product-grid {
@@ -332,27 +292,38 @@
         }
 
         .product-card {
-            background: var(--bg-card);
+            background: #ffffff;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid var(--border-light);
+            border: 1px solid #eef2f6;
             transition: all 0.3s ease;
+        }
+        body.dark .product-card {
+            background: #16162e;
+            border-color: #2a2a4a;
         }
         .product-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-card);
-            border-color: var(--icon-color);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            border-color: #6c5ce7;
+        }
+        body.dark .product-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .product-card .card-image {
             height: 180px;
-            background: var(--file-label-bg);
+            background: #f8f8f8;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            color: var(--placeholder-color);
-            border-bottom: 1px solid var(--border-light);
+            color: #94a3b8;
+            border-bottom: 1px solid #eef2f6;
+        }
+        body.dark .product-card .card-image {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
         }
         .product-card .card-image img {
             width: 100%;
@@ -367,40 +338,48 @@
         .product-card .card-body .name {
             font-weight: 600;
             font-size: 1rem;
-            color: var(--text-primary);
+            color: #0f172a;
             display: flex;
             align-items: center;
             gap: 6px;
         }
+        body.dark .product-card .card-body .name { color: #f1f5f9; }
         .product-card .card-body .name .badge {
             font-size: 0.5rem;
-            background: var(--badge-bg);
-            color: var(--badge-text);
+            background: #e8e0f7;
+            color: #6c5ce7;
             padding: 2px 8px;
             border-radius: 20px;
             font-weight: 600;
         }
+        body.dark .product-card .card-body .name .badge {
+            background: #2a2a5a;
+            color: #8b7cf7;
+        }
         .product-card .card-body .category {
             font-size: 0.7rem;
             text-transform: uppercase;
-            color: var(--text-light);
+            color: #64748b;
             letter-spacing: 0.5px;
         }
+        body.dark .product-card .card-body .category { color: #94a3b8; }
         .product-card .card-body .rating {
             font-size: 0.85rem;
             color: #f59e0b;
             margin: 4px 0;
         }
         .product-card .card-body .rating span {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.75rem;
         }
+        body.dark .product-card .card-body .rating span { color: #94a3b8; }
         .product-card .card-body .price {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: #0f172a;
             margin-top: 4px;
         }
+        body.dark .product-card .card-body .price { color: #f1f5f9; }
         .product-card .card-body .actions {
             display: flex;
             gap: 8px;
@@ -409,7 +388,7 @@
         .product-card .card-body .actions .btn-add {
             flex: 1;
             padding: 8px 12px;
-            background: var(--btn-primary-bg);
+            background: #0f172a;
             color: white;
             border: none;
             border-radius: 40px;
@@ -418,26 +397,34 @@
             cursor: pointer;
             transition: 0.3s;
         }
+        body.dark .product-card .card-body .actions .btn-add {
+            background: #6c5ce7;
+        }
         .product-card .card-body .actions .btn-add:hover {
-            background: var(--btn-primary-hover);
+            background: #6c5ce7;
         }
 
         .no-products {
             text-align: center;
             padding: 60px 20px;
-            color: var(--text-light);
+            color: #64748b;
             grid-column: 1 / -1;
         }
+        body.dark .no-products { color: #94a3b8; }
 
-        /* ----- LOGIN ----- */
+        /* LOGIN */
         .login-page {
             max-width: 420px;
             margin: 40px auto;
-            background: var(--bg-card);
+            background: #ffffff;
             padding: 40px 36px;
             border-radius: 24px;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-card);
+            border: 1px solid #eef2f6;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.02);
+        }
+        body.dark .login-page {
+            background: #16162e;
+            border-color: #2a2a4a;
         }
 
         .login-page .login-header {
@@ -446,25 +433,26 @@
         }
         .login-page .login-header .icon {
             font-size: 2.4rem;
-            color: var(--icon-color);
+            color: #6c5ce7;
             margin-bottom: 6px;
         }
         .login-page .login-header h2 {
             font-size: 1.5rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .login-page .login-header h2 { color: #f1f5f9; }
         .login-page .login-header p {
-            color: var(--text-muted);
+            color: #64748b;
             font-size: 0.9rem;
         }
+        body.dark .login-page .login-header p { color: #94a3b8; }
 
         .login-form {
             display: flex;
             flex-direction: column;
             gap: 14px;
         }
-
         .login-form .form-group {
             display: flex;
             flex-direction: column;
@@ -473,26 +461,31 @@
         .login-form .form-group label {
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .login-form .form-group label { color: #f1f5f9; }
         .login-form .form-group input {
             padding: 12px 16px;
-            border: 2px solid var(--border-input);
+            border: 2px solid #dce0e5;
             border-radius: 12px;
             font-size: 0.95rem;
             outline: none;
             transition: 0.3s;
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            background: #ffffff;
+            color: #0f172a;
+        }
+        body.dark .login-form .form-group input {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
         .login-form .form-group input:focus {
-            border-color: var(--icon-color);
-            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.08);
+            border-color: #6c5ce7;
         }
 
         .login-form .btn-login {
             padding: 14px;
-            background: var(--btn-primary-bg);
+            background: #0f172a;
             color: white;
             border: none;
             border-radius: 50px;
@@ -502,17 +495,17 @@
             transition: 0.3s;
             margin-top: 6px;
         }
-        .login-form .btn-login:hover {
-            background: var(--btn-primary-hover);
-        }
+        body.dark .login-form .btn-login { background: #6c5ce7; }
+        .login-form .btn-login:hover { background: #6c5ce7; }
 
         .login-form .divider {
             text-align: center;
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.85rem;
             position: relative;
             margin: 2px 0;
         }
+        body.dark .login-form .divider { color: #94a3b8; }
         .login-form .divider::before,
         .login-form .divider::after {
             content: '';
@@ -520,16 +513,18 @@
             top: 50%;
             width: 30%;
             height: 1px;
-            background: var(--border-input);
+            background: #dce0e5;
         }
+        body.dark .login-form .divider::before,
+        body.dark .login-form .divider::after { background: #2a2a4a; }
         .login-form .divider::before { left: 0; }
         .login-form .divider::after { right: 0; }
 
         .login-form .btn-google {
             padding: 12px;
-            background: var(--google-btn-bg);
-            color: var(--google-btn-text);
-            border: 2px solid var(--google-btn-border);
+            background: #ffffff;
+            color: #0f172a;
+            border: 2px solid #dce0e5;
             border-radius: 50px;
             font-weight: 600;
             font-size: 0.95rem;
@@ -540,18 +535,22 @@
             justify-content: center;
             gap: 10px;
         }
-        .login-form .btn-google:hover {
-            border-color: var(--icon-color);
+        body.dark .login-form .btn-google {
+            background: #1a1a3a;
+            color: #e2e8f0;
+            border-color: #2a2a4a;
         }
+        .login-form .btn-google:hover { border-color: #6c5ce7; }
         .login-form .btn-google i { color: #ea4335; font-size: 1.2rem; }
 
         .login-form .switch {
             text-align: center;
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: #64748b;
         }
+        body.dark .login-form .switch { color: #94a3b8; }
         .login-form .switch a {
-            color: var(--icon-color);
+            color: #6c5ce7;
             font-weight: 600;
             cursor: pointer;
         }
@@ -575,7 +574,7 @@
             display: none;
         }
 
-        /* ----- CART SIDEBAR ----- */
+        /* CART SIDEBAR */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -597,36 +596,43 @@
             width: 400px;
             max-width: 90vw;
             height: 100%;
-            background: var(--bg-card);
+            background: #ffffff;
             z-index: 201;
             box-shadow: -8px 0 40px rgba(0,0,0,0.08);
             transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             flex-direction: column;
-            border-left: 1px solid var(--border-light);
+            border-left: 1px solid #eef2f6;
+        }
+        body.dark .cart-sidebar {
+            background: #16162e;
+            border-color: #2a2a4a;
         }
         .cart-sidebar.open { right: 0; }
 
         .cart-sidebar .cart-header {
             padding: 20px 24px;
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 1px solid #eef2f6;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
         }
+        body.dark .cart-sidebar .cart-header { border-color: #2a2a4a; }
         .cart-sidebar .cart-header h2 {
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .cart-sidebar .cart-header h2 { color: #f1f5f9; }
         .cart-sidebar .cart-header .close {
             background: none;
             border: none;
             font-size: 1.4rem;
             cursor: pointer;
-            color: var(--text-light);
+            color: #64748b;
         }
+        body.dark .cart-sidebar .cart-header .close { color: #94a3b8; }
 
         .cart-sidebar .cart-items {
             flex: 1;
@@ -636,8 +642,9 @@
         .cart-sidebar .cart-items .empty {
             text-align: center;
             padding: 60px 20px;
-            color: var(--text-light);
+            color: #64748b;
         }
+        body.dark .cart-sidebar .cart-items .empty { color: #94a3b8; }
         .cart-sidebar .cart-items .empty i {
             font-size: 2.4rem;
             display: block;
@@ -649,20 +656,24 @@
             display: flex;
             gap: 12px;
             padding: 12px 0;
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 1px solid #eef2f6;
         }
+        body.dark .cart-sidebar .cart-item { border-color: #2a2a4a; }
         .cart-sidebar .cart-item:last-child { border-bottom: none; }
         .cart-sidebar .cart-item .item-image {
             width: 56px;
             height: 56px;
-            background: var(--file-label-bg);
+            background: #f8f8f8;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.6rem;
-            color: var(--placeholder-color);
+            color: #94a3b8;
             flex-shrink: 0;
+        }
+        body.dark .cart-sidebar .cart-item .item-image {
+            background: #1a1a3a;
         }
         .cart-sidebar .cart-item .item-image img {
             width: 100%;
@@ -674,12 +685,14 @@
         .cart-sidebar .cart-item .item-info .name {
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .cart-sidebar .cart-item .item-info .name { color: #f1f5f9; }
         .cart-sidebar .cart-item .item-info .price {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: #64748b;
         }
+        body.dark .cart-sidebar .cart-item .item-info .price { color: #94a3b8; }
         .cart-sidebar .cart-item .item-actions {
             display: flex;
             align-items: center;
@@ -689,56 +702,65 @@
         .cart-sidebar .cart-item .item-actions button {
             width: 26px;
             height: 26px;
-            border: 1px solid var(--border-input);
+            border: 1px solid #dce0e5;
             border-radius: 6px;
-            background: var(--bg-input);
+            background: #ffffff;
             cursor: pointer;
             transition: 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: #0f172a;
+        }
+        body.dark .cart-sidebar .cart-item .item-actions button {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
         .cart-sidebar .cart-item .item-actions button:hover {
-            background: var(--icon-color);
+            background: #6c5ce7;
             color: white;
-            border-color: var(--icon-color);
+            border-color: #6c5ce7;
         }
         .cart-sidebar .cart-item .item-actions .qty {
             min-width: 20px;
             text-align: center;
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .cart-sidebar .cart-item .item-actions .qty { color: #f1f5f9; }
         .cart-sidebar .cart-item .item-remove {
             background: none;
             border: none;
-            color: var(--text-light);
+            color: #64748b;
             cursor: pointer;
             font-size: 0.8rem;
             padding: 0 4px;
         }
+        body.dark .cart-sidebar .cart-item .item-remove { color: #94a3b8; }
         .cart-sidebar .cart-item .item-remove:hover { color: #ef4444; }
 
         .cart-sidebar .cart-footer {
             padding: 16px 24px 24px;
-            border-top: 1px solid var(--border-light);
+            border-top: 1px solid #eef2f6;
             flex-shrink: 0;
         }
+        body.dark .cart-sidebar .cart-footer { border-color: #2a2a4a; }
         .cart-sidebar .cart-footer .total {
             display: flex;
             justify-content: space-between;
             font-weight: 700;
             font-size: 1.1rem;
             margin-bottom: 12px;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .cart-sidebar .cart-footer .total { color: #f1f5f9; }
         .cart-sidebar .cart-footer .btn-checkout {
             width: 100%;
             padding: 14px;
-            background: var(--btn-primary-bg);
+            background: #0f172a;
             color: white;
             border: none;
             border-radius: 50px;
@@ -746,33 +768,36 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .cart-sidebar .cart-footer .btn-checkout:hover {
-            background: var(--btn-primary-hover);
-        }
+        body.dark .cart-sidebar .cart-footer .btn-checkout { background: #6c5ce7; }
+        .cart-sidebar .cart-footer .btn-checkout:hover { background: #6c5ce7; }
 
-        /* ----- ADD PRODUCT ----- */
+        /* ADD PRODUCT */
         .add-product-page {
             max-width: 640px;
             margin: 0 auto;
             padding: 32px 0;
         }
-
         .add-product-page .card {
-            background: var(--bg-card);
+            background: #ffffff;
             padding: 40px 44px;
             border-radius: 24px;
-            border: 1px solid var(--border-light);
+            border: 1px solid #eef2f6;
         }
-
+        body.dark .add-product-page .card {
+            background: #16162e;
+            border-color: #2a2a4a;
+        }
         .add-product-page .card h2 {
             font-size: 1.6rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .add-product-page .card h2 { color: #f1f5f9; }
         .add-product-page .card .sub {
-            color: var(--text-muted);
+            color: #64748b;
             margin-bottom: 24px;
         }
+        body.dark .add-product-page .card .sub { color: #94a3b8; }
 
         .add-product-form {
             display: grid;
@@ -780,7 +805,6 @@
             gap: 16px 20px;
         }
         .add-product-form .full-width { grid-column: 1 / -1; }
-
         .add-product-form .form-group {
             display: flex;
             flex-direction: column;
@@ -789,27 +813,34 @@
         .add-product-form .form-group label {
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .add-product-form .form-group label { color: #f1f5f9; }
         .add-product-form .form-group label .required { color: #ef4444; }
         .add-product-form .form-group input,
         .add-product-form .form-group textarea,
         .add-product-form .form-group select {
             padding: 11px 14px;
-            border: 2px solid var(--border-input);
+            border: 2px solid #dce0e5;
             border-radius: 12px;
             font-size: 0.95rem;
             outline: none;
             transition: 0.3s;
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            background: #ffffff;
+            color: #0f172a;
             width: 100%;
+        }
+        body.dark .add-product-form .form-group input,
+        body.dark .add-product-form .form-group textarea,
+        body.dark .add-product-form .form-group select {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
         .add-product-form .form-group input:focus,
         .add-product-form .form-group textarea:focus,
         .add-product-form .form-group select:focus {
-            border-color: var(--icon-color);
-            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.08);
+            border-color: #6c5ce7;
         }
         .add-product-form .form-group textarea { resize: vertical; min-height: 70px; }
 
@@ -819,12 +850,11 @@
             flex-direction: column;
             align-items: center;
         }
-
         .add-product-form .file-upload .file-label {
             width: 160px;
             height: 160px;
-            background: var(--file-label-bg);
-            border: 2px dashed var(--file-border);
+            background: #f8f8f8;
+            border: 2px dashed #dce0e5;
             border-radius: 16px;
             display: flex;
             flex-direction: column;
@@ -835,18 +865,22 @@
             overflow: hidden;
             position: relative;
         }
-        .add-product-form .file-upload .file-label:hover {
-            border-color: var(--icon-color);
+        body.dark .add-product-form .file-upload .file-label {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
         }
+        .add-product-form .file-upload .file-label:hover { border-color: #6c5ce7; }
         .add-product-form .file-upload .file-label i {
             font-size: 2rem;
-            color: var(--text-light);
+            color: #64748b;
         }
+        body.dark .add-product-form .file-upload .file-label i { color: #94a3b8; }
         .add-product-form .file-upload .file-label .hint {
             font-size: 0.7rem;
-            color: var(--text-light);
+            color: #64748b;
             margin-top: 4px;
         }
+        body.dark .add-product-form .file-upload .file-label .hint { color: #94a3b8; }
         .add-product-form .file-upload .file-label input {
             position: absolute;
             opacity: 0;
@@ -866,25 +900,28 @@
             gap: 12px;
             justify-content: flex-end;
             padding-top: 16px;
-            border-top: 1px solid var(--border-light);
+            border-top: 1px solid #eef2f6;
             margin-top: 4px;
         }
+        body.dark .add-product-form .form-actions { border-color: #2a2a4a; }
         .add-product-form .form-actions .btn-cancel {
             padding: 12px 28px;
             background: transparent;
-            border: 2px solid var(--border-input);
+            border: 2px solid #dce0e5;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
-            color: var(--text-secondary);
+            color: #0f172a;
         }
-        .add-product-form .form-actions .btn-cancel:hover {
-            border-color: var(--icon-color);
+        body.dark .add-product-form .form-actions .btn-cancel {
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
+        .add-product-form .form-actions .btn-cancel:hover { border-color: #6c5ce7; }
         .add-product-form .form-actions .btn-submit {
             padding: 12px 34px;
-            background: var(--btn-primary-bg);
+            background: #0f172a;
             color: white;
             border: none;
             border-radius: 50px;
@@ -892,11 +929,10 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .add-product-form .form-actions .btn-submit:hover {
-            background: var(--btn-primary-hover);
-        }
+        body.dark .add-product-form .form-actions .btn-submit { background: #6c5ce7; }
+        .add-product-form .form-actions .btn-submit:hover { background: #6c5ce7; }
 
-        /* ----- DASHBOARD ----- */
+        /* DASHBOARD */
         .dashboard-page {
             max-width: 900px;
             margin: 0 auto;
@@ -905,12 +941,14 @@
         .dashboard-page h2 {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .dashboard-page h2 { color: #f1f5f9; }
         .dashboard-page .sub {
-            color: var(--text-muted);
+            color: #64748b;
             margin-bottom: 24px;
         }
+        body.dark .dashboard-page .sub { color: #94a3b8; }
 
         .stats-grid-dash {
             display: grid;
@@ -919,79 +957,99 @@
             margin-bottom: 32px;
         }
         .stats-grid-dash .stat-card {
-            background: var(--bg-card);
+            background: #ffffff;
             padding: 20px 24px;
             border-radius: 16px;
-            border: 1px solid var(--border-light);
+            border: 1px solid #eef2f6;
+        }
+        body.dark .stats-grid-dash .stat-card {
+            background: #16162e;
+            border-color: #2a2a4a;
         }
         .stats-grid-dash .stat-card .label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: var(--text-light);
+            color: #64748b;
         }
+        body.dark .stats-grid-dash .stat-card .label { color: #94a3b8; }
         .stats-grid-dash .stat-card .value {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .stats-grid-dash .stat-card .value { color: #f1f5f9; }
 
         .chart-container {
-            background: var(--bg-card);
+            background: #ffffff;
             padding: 24px;
             border-radius: 16px;
-            border: 1px solid var(--border-light);
+            border: 1px solid #eef2f6;
+        }
+        body.dark .chart-container {
+            background: #16162e;
+            border-color: #2a2a4a;
         }
         .chart-container h3 {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 16px;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .chart-container h3 { color: #f1f5f9; }
         .chart-container .chart-wrapper { height: 240px; }
 
-        /* ----- PREMIUM ----- */
+        /* PREMIUM */
         .premium-page {
             max-width: 520px;
             margin: 0 auto;
             padding: 32px 0;
         }
         .premium-page .card {
-            background: var(--bg-card);
+            background: #ffffff;
             padding: 40px 44px;
             border-radius: 24px;
-            border: 1px solid var(--border-light);
+            border: 1px solid #eef2f6;
             text-align: center;
+        }
+        body.dark .premium-page .card {
+            background: #16162e;
+            border-color: #2a2a4a;
         }
         .premium-page .card .crown {
             font-size: 2.8rem;
-            color: var(--premium-accent);
+            color: #f59e0b;
             margin-bottom: 8px;
         }
         .premium-page .card h2 {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .premium-page .card h2 { color: #f1f5f9; }
         .premium-page .card .sub {
-            color: var(--text-muted);
+            color: #64748b;
             margin-bottom: 16px;
         }
+        body.dark .premium-page .card .sub { color: #94a3b8; }
         .premium-page .card .price-box {
-            background: var(--file-label-bg);
+            background: #f8f8f8;
             padding: 20px;
             border-radius: 16px;
             margin-bottom: 24px;
         }
+        body.dark .premium-page .card .price-box { background: #1a1a3a; }
         .premium-page .card .price-box .amount {
             font-size: 2.4rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .premium-page .card .price-box .amount { color: #f1f5f9; }
         .premium-page .card .price-box .period {
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.95rem;
         }
+        body.dark .premium-page .card .price-box .period { color: #94a3b8; }
         .premium-page .card .price-box .features {
             display: flex;
             justify-content: center;
@@ -1001,11 +1059,12 @@
         }
         .premium-page .card .price-box .features span {
             font-size: 0.8rem;
-            color: var(--text-muted);
+            color: #64748b;
             display: flex;
             align-items: center;
             gap: 4px;
         }
+        body.dark .premium-page .card .price-box .features span { color: #94a3b8; }
         .premium-page .card .price-box .features span i { color: #22c55e; }
 
         .premium-page .card .payment-form {
@@ -1021,24 +1080,31 @@
         .premium-page .card .payment-form .method-group .method {
             flex: 1;
             padding: 10px;
-            border: 2px solid var(--border-input);
+            border: 2px solid #dce0e5;
             border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: 0.3s;
             font-weight: 500;
             font-size: 0.9rem;
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            background: #ffffff;
+            color: #0f172a;
+        }
+        body.dark .premium-page .card .payment-form .method-group .method {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
         .premium-page .card .payment-form .method-group .method.active {
-            border-color: var(--icon-color);
-            background: var(--badge-bg);
-            color: var(--icon-color);
+            border-color: #6c5ce7;
+            background: #e8e0f7;
+            color: #6c5ce7;
         }
-        .premium-page .card .payment-form .method-group .method:hover {
-            border-color: var(--icon-color);
+        body.dark .premium-page .card .payment-form .method-group .method.active {
+            background: #2a2a5a;
+            color: #8b7cf7;
         }
+        .premium-page .card .payment-form .method-group .method:hover { border-color: #6c5ce7; }
         .premium-page .card .payment-form .form-group {
             display: flex;
             flex-direction: column;
@@ -1047,21 +1113,25 @@
         .premium-page .card .payment-form .form-group label {
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--text-primary);
+            color: #0f172a;
         }
+        body.dark .premium-page .card .payment-form .form-group label { color: #f1f5f9; }
         .premium-page .card .payment-form .form-group input {
             padding: 11px 14px;
-            border: 2px solid var(--border-input);
+            border: 2px solid #dce0e5;
             border-radius: 12px;
             font-size: 0.95rem;
             outline: none;
             transition: 0.3s;
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            background: #ffffff;
+            color: #0f172a;
         }
-        .premium-page .card .payment-form .form-group input:focus {
-            border-color: var(--icon-color);
+        body.dark .premium-page .card .payment-form .form-group input {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
+        .premium-page .card .payment-form .form-group input:focus { border-color: #6c5ce7; }
         .premium-page .card .payment-form .row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1069,7 +1139,7 @@
         }
         .premium-page .card .payment-form .btn-pay {
             padding: 14px;
-            background: linear-gradient(135deg, var(--premium-accent), var(--premium-btn-hover));
+            background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white;
             border: none;
             border-radius: 50px;
@@ -1085,25 +1155,32 @@
         .premium-page .card .payment-form .btn-cancel {
             padding: 12px;
             background: transparent;
-            border: 2px solid var(--border-input);
+            border: 2px solid #dce0e5;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
-            color: var(--text-secondary);
+            color: #0f172a;
         }
-        .premium-page .card .payment-form .btn-cancel:hover {
-            border-color: var(--icon-color);
+        body.dark .premium-page .card .payment-form .btn-cancel {
+            border-color: #2a2a4a;
+            color: #e2e8f0;
         }
+        .premium-page .card .payment-form .btn-cancel:hover { border-color: #6c5ce7; }
 
-        /* ----- FOOTER ----- */
+        /* FOOTER */
         .footer {
-            background: var(--bg-footer);
-            border-top: 1px solid var(--border-light);
+            background: #ffffff;
+            border-top: 1px solid #eef2f6;
             padding: 20px 0;
-            color: var(--text-light);
+            color: #64748b;
             font-size: 0.85rem;
             margin-top: auto;
+        }
+        body.dark .footer {
+            background: #0a0a1a;
+            border-color: #2a2a4a;
+            color: #94a3b8;
         }
         .footer-content {
             display: flex;
@@ -1117,18 +1194,20 @@
             gap: 24px;
         }
         .footer-links a {
-            color: var(--text-light);
+            color: #64748b;
             text-decoration: none;
             transition: 0.2s;
         }
-        .footer-links a:hover { color: var(--text-primary); }
+        body.dark .footer-links a { color: #94a3b8; }
+        .footer-links a:hover { color: #0f172a; }
+        body.dark .footer-links a:hover { color: #f1f5f9; }
 
-        /* ----- TOAST ----- */
+        /* TOAST */
         .toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--toast-bg);
+            background: #0f172a;
             color: white;
             padding: 14px 24px;
             border-radius: 50px;
@@ -1142,7 +1221,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid var(--toast-border);
+            border: 1px solid #1e293b;
+        }
+        body.dark .toast {
+            background: #1a1a3a;
+            border-color: #2a2a4a;
         }
         .toast.show {
             opacity: 1;
@@ -1151,7 +1234,7 @@
         }
         .toast i { color: #4ade80; }
 
-        /* ----- PAGE UTILITY ----- */
+        /* PAGE UTILITY */
         .page {
             display: none;
             padding: 20px 0 40px 0;
@@ -1166,13 +1249,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ----- RESPONSIVE ----- */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
-            .products-section .section-header { flex-direction: column; align-items: stretch; }
+            .section-header { flex-direction: column; align-items: stretch; }
             .filter-group { flex-wrap: wrap; }
-            .filter-group select, .filter-group input { flex: 1; min-width: 100px; }
+            .filter-group select,
+            .filter-group input { flex: 1; min-width: 100px; }
             .add-product-form { grid-template-columns: 1fr; }
             .add-product-form .full-width { grid-column: 1; }
             .add-product-page .card { padding: 24px 18px; }
@@ -1194,7 +1278,7 @@
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <header class="header">
     <div class="container header-content">
         <div class="logo" id="homeLogo">
@@ -1205,15 +1289,8 @@
             </div>
         </div>
         <div class="header-actions">
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon" id="themeIcon"></i>
-                <span id="themeLabel">Dark</span>
-            </button>
-
-            <button class="profile-icon" id="profileToggle">
-                <i class="fas fa-user-circle"></i>
-            </button>
-
+            <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+            <button class="profile-icon" id="profileToggle"><i class="fas fa-user-circle"></i></button>
             <button class="cart-icon" id="cartToggle">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cart-badge" id="cartCount">0</span>
@@ -1222,7 +1299,7 @@
     </div>
 </header>
 
-<!-- ===== DROPDOWN ===== -->
+<!-- DROPDOWN -->
 <div class="dropdown-menu" id="dropdownMenu">
     <button class="dropdown-item" data-page="homePage"><i class="fas fa-home"></i> Home</button>
     <button class="dropdown-item" data-page="addProductPage" id="addProductMenuItem" style="display:none;"><i class="fas fa-plus-circle"></i> Add product</button>
@@ -1231,7 +1308,7 @@
     <button class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
 </div>
 
-<!-- ===== CART ===== -->
+<!-- CART -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
@@ -1239,10 +1316,7 @@
         <button class="close" id="cartClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="cart-items" id="cartItems">
-        <div class="empty">
-            <i class="fas fa-cart-plus"></i>
-            <p>Your cart is empty.</p>
-        </div>
+        <div class="empty"><i class="fas fa-cart-plus"></i><p>Your cart is empty.</p></div>
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none;">
         <div class="total"><span>Total</span><span id="cartTotal">$0.00</span></div>
@@ -1250,17 +1324,14 @@
     </div>
 </div>
 
-<!-- ===== TOAST ===== -->
-<div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toastMessage">Added to cart</span>
-</div>
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage">Added to cart</span></div>
 
-<!-- ===== MAIN ===== -->
+<!-- MAIN -->
 <main>
     <div class="container">
 
-        <!-- ===== LOGIN ===== -->
+        <!-- LOGIN -->
         <div class="page" id="loginPage">
             <div class="login-page">
                 <div class="login-header">
@@ -1281,14 +1352,10 @@
                     </div>
                     <button type="submit" class="btn-login">Sign In</button>
                     <div class="divider">or</div>
-                    <button type="button" class="btn-google" id="googleSignInBtn">
-                        <i class="fab fa-google"></i> Continue with Google
-                    </button>
+                    <button type="button" class="btn-google" id="googleSignInBtn"><i class="fab fa-google"></i> Continue with Google</button>
                     <div class="divider">or</div>
-                    <button type="button" class="btn-google" id="showSignupBtn" style="border:2px solid var(--border-input);background:transparent;">Create New Account</button>
-                    <div class="switch">
-                        Don't have an account? <a id="switchToSignup">Sign up</a>
-                    </div>
+                    <button type="button" class="btn-google" id="showSignupBtn" style="border:2px solid #dce0e5;background:transparent;">Create New Account</button>
+                    <div class="switch">Don't have an account? <a id="switchToSignup">Sign up</a></div>
                 </form>
                 <form class="login-form" id="signupForm" style="display:none;">
                     <div class="error-msg" id="signupError"></div>
@@ -1303,19 +1370,15 @@
                     </div>
                     <button type="submit" class="btn-login" id="signupBtn">Create Account</button>
                     <div class="divider">or</div>
-                    <button type="button" class="btn-google" id="googleSignUpBtn">
-                        <i class="fab fa-google"></i> Sign up with Google
-                    </button>
+                    <button type="button" class="btn-google" id="googleSignUpBtn"><i class="fab fa-google"></i> Sign up with Google</button>
                     <div class="divider">or</div>
-                    <button type="button" class="btn-google" id="showLoginBtn" style="border:2px solid var(--border-input);background:transparent;">Back to Sign In</button>
-                    <div class="switch">
-                        Already have an account? <a id="switchToLogin">Sign in</a>
-                    </div>
+                    <button type="button" class="btn-google" id="showLoginBtn" style="border:2px solid #dce0e5;background:transparent;">Back to Sign In</button>
+                    <div class="switch">Already have an account? <a id="switchToLogin">Sign in</a></div>
                 </form>
             </div>
         </div>
 
-        <!-- ===== HOME ===== -->
+        <!-- HOME -->
         <div class="page active" id="homePage">
             <section class="hero">
                 <h1>Welcome to <span>OXAVO MARKET</span></h1>
@@ -1326,20 +1389,16 @@
                 <div class="section-header">
                     <h2>🛍️ All Products</h2>
                     <div class="filter-group">
-                        <select id="categoryFilter">
-                            <option value="all">All Categories</option>
-                        </select>
+                        <select id="categoryFilter"><option value="all">All Categories</option></select>
                         <input type="number" id="priceFilter" placeholder="Max price $" step="1" min="0" />
                         <button class="btn-outline" id="resetFilters" style="padding:8px 18px;font-size:0.8rem;">Reset</button>
                     </div>
                 </div>
-                <div class="product-grid" id="productGrid">
-                    <!-- rendered by JS -->
-                </div>
+                <div class="product-grid" id="productGrid"></div>
             </section>
         </div>
 
-        <!-- ===== ADD PRODUCT ===== -->
+        <!-- ADD PRODUCT -->
         <div class="page" id="addProductPage">
             <div class="add-product-page">
                 <div class="card">
@@ -1398,7 +1457,7 @@
             </div>
         </div>
 
-        <!-- ===== DASHBOARD ===== -->
+        <!-- DASHBOARD -->
         <div class="page" id="dashboardPage">
             <div class="dashboard-page">
                 <h2>📊 Dashboard</h2>
@@ -1411,14 +1470,12 @@
                 </div>
                 <div class="chart-container">
                     <h3>📈 Sales & Revenue (last 7 days)</h3>
-                    <div class="chart-wrapper">
-                        <canvas id="salesChart"></canvas>
-                    </div>
+                    <div class="chart-wrapper"><canvas id="salesChart"></canvas></div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== PREMIUM ===== -->
+        <!-- PREMIUM -->
         <div class="page" id="premiumPage">
             <div class="premium-page">
                 <div class="card">
@@ -1426,10 +1483,7 @@
                     <h2>Upgrade to Premium</h2>
                     <p class="sub">Get free delivery, exclusive discounts, and priority support</p>
                     <div class="price-box">
-                        <div>
-                            <span class="amount">$9.99</span>
-                            <span class="period"> / month</span>
-                        </div>
+                        <div><span class="amount">$9.99</span><span class="period"> / month</span></div>
                         <div class="features">
                             <span><i class="fas fa-check"></i> Free shipping</span>
                             <span><i class="fas fa-check"></i> 10% off</span>
@@ -1443,34 +1497,16 @@
                             <button type="button" class="method" data-method="paypal"><i class="fab fa-paypal"></i> PayPal</button>
                         </div>
                         <div id="cardFields">
-                            <div class="form-group">
-                                <label>Cardholder Name</label>
-                                <input type="text" placeholder="John Doe" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Card Number</label>
-                                <input type="text" placeholder="1234 5678 9012 3456" required />
-                            </div>
+                            <div class="form-group"><label>Cardholder Name</label><input type="text" placeholder="John Doe" required /></div>
+                            <div class="form-group"><label>Card Number</label><input type="text" placeholder="1234 5678 9012 3456" required /></div>
                             <div class="row">
-                                <div class="form-group">
-                                    <label>Expiry Date</label>
-                                    <input type="text" placeholder="MM/YY" required />
-                                </div>
-                                <div class="form-group">
-                                    <label>CVV</label>
-                                    <input type="text" placeholder="123" required />
-                                </div>
+                                <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM/YY" required /></div>
+                                <div class="form-group"><label>CVV</label><input type="text" placeholder="123" required /></div>
                             </div>
                         </div>
                         <div id="paypalFields" style="display:none;">
-                            <div class="form-group">
-                                <label>PayPal Email</label>
-                                <input type="email" placeholder="your@email.com" />
-                            </div>
-                            <div class="form-group">
-                                <label>PayPal Password</label>
-                                <input type="password" placeholder="••••••••" />
-                            </div>
+                            <div class="form-group"><label>PayPal Email</label><input type="email" placeholder="your@email.com" /></div>
+                            <div class="form-group"><label>PayPal Password</label><input type="password" placeholder="••••••••" /></div>
                         </div>
                         <button type="submit" class="btn-pay"><i class="fas fa-crown"></i> Subscribe Now — $9.99/mo</button>
                         <button type="button" class="btn-cancel" id="cancelPremiumBtn">Cancel</button>
@@ -1482,7 +1518,7 @@
     </div>
 </main>
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer class="footer">
     <div class="container footer-content">
         <span>© 2026 OXAVO MARKET. All rights reserved.</span>
@@ -1498,9 +1534,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-    // ============================================================
-    //  FIREBASE CONFIGURATION
-    // ============================================================
+    // Firebase Config
     const firebaseConfig = {
         apiKey: "AIzaSyDzQy4UdAjqGwJtNXeFifoC_hZOrlZGNQ0",
         authDomain: "oxavo-market.firebaseapp.com",
@@ -1509,22 +1543,18 @@
         messagingSenderId: "362323013997",
         appId: "1:362323013997:web:9db38fdd6213ab606f6a64"
     };
-
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-    // ============================================================
-    //  STATE
-    // ============================================================
+    // State
     let products = [];
     let nextId = 1;
     let cart = [];
     let currentUser = null;
     let isSeller = false;
     const SELLER_EMAIL = 'amaraabdualillah@gmail.com';
-
     let salesData = {
         totalSales: 0,
         totalRevenue: 0,
@@ -1532,22 +1562,15 @@
         dailySales: [0, 0, 0, 0, 0, 0, 0],
         dailyRevenue: [0, 0, 0, 0, 0, 0, 0],
     };
-
     let chartInstance = null;
     let editingProductId = null;
 
-    // ============================================================
-    //  DOM REFS
-    // ============================================================
+    // DOM
     const homePage = document.getElementById('homePage');
     const loginPage = document.getElementById('loginPage');
-    const addProductPage = document.getElementById('addProductPage');
-    const dashboardPage = document.getElementById('dashboardPage');
-    const premiumPage = document.getElementById('premiumPage');
     const productGrid = document.getElementById('productGrid');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const profileToggle = document.getElementById('profileToggle');
-
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     const loginEmail = document.getElementById('loginEmail');
@@ -1601,41 +1624,29 @@
     const avgOrderEl = document.getElementById('avgOrder');
 
     const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
 
     let darkMode = false;
 
-    // ============================================================
-    //  UTILITY
-    // ============================================================
+    // Utility
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         const page = document.getElementById(pageId);
         if (page) {
             page.classList.add('active');
             page.style.animation = 'none';
-            requestAnimationFrame(() => {
-                page.style.animation = 'fadeUp 0.5s ease';
-            });
+            requestAnimationFrame(() => { page.style.animation = 'fadeUp 0.5s ease'; });
         }
-        if (pageId === 'dashboardPage' && isSeller) {
-            setTimeout(updateDashboard, 100);
-        }
+        if (pageId === 'dashboardPage' && isSeller) setTimeout(updateDashboard, 100);
         closeDropdown();
     }
 
-    function closeDropdown() {
-        dropdownMenu.classList.remove('open');
-    }
+    function closeDropdown() { dropdownMenu.classList.remove('open'); }
 
     function showToast(msg) {
         toastMsg.textContent = msg;
         toast.classList.add('show');
         clearTimeout(window.toastTimeout);
-        window.toastTimeout = setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
+        window.toastTimeout = setTimeout(() => { toast.classList.remove('show'); }, 3000);
     }
 
     function showLoginPage() {
@@ -1664,56 +1675,29 @@
         }
     }
 
-    // ============================================================
-    //  PRODUCTS
-    // ============================================================
+    // Products
     function renderProducts() {
         const category = categoryFilter.value;
         const maxPrice = parseFloat(priceFilter.value) || Infinity;
-
         let filtered = products.filter(p => {
-            const matchCategory = category === 'all' || p.category === category;
-            const matchPrice = p.price <= maxPrice;
-            return matchCategory && matchPrice;
+            return (category === 'all' || p.category === category) && p.price <= maxPrice;
         });
 
         if (filtered.length === 0) {
-            productGrid.innerHTML = `
-                <div class="no-products">
-                    <i class="fas fa-box-open" style="font-size:2.4rem;display:block;margin-bottom:8px;opacity:0.3;"></i>
-                    <p>No products found. Add your first product!</p>
-                </div>
-            `;
+            productGrid.innerHTML = `<div class="no-products"><i class="fas fa-box-open" style="font-size:2.4rem;display:block;margin-bottom:8px;opacity:0.3;"></i><p>No products found.</p></div>`;
             return;
         }
 
         productGrid.innerHTML = filtered.map((p, index) => {
-            const imageHtml = p.image
-                ? `<img src="${p.image}" alt="${p.name}" />`
-                : `<i class="fas fa-cube"></i>`;
-            
+            const imageHtml = p.image ? `<img src="${p.image}" alt="${p.name}" />` : `<i class="fas fa-cube"></i>`;
             const rating = p.rating || 0;
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 >= 0.5;
             let starsHtml = '';
-            for (let i = 0; i < 5; i++) {
-                if (i < fullStars) {
-                    starsHtml += '★';
-                } else if (i === fullStars && hasHalfStar) {
-                    starsHtml += '★';
-                } else {
-                    starsHtml += '☆';
-                }
-            }
-            
+            for (let i = 0; i < 5; i++) starsHtml += i < Math.floor(rating) ? '★' : '☆';
             return `
-                <div class="product-card" data-id="${p.id}" style="animation: fadeUp 0.5s ease ${index * 0.05}s forwards;">
+                <div class="product-card" data-id="${p.id}">
                     <div class="card-image">${imageHtml}</div>
                     <div class="card-body">
-                        <div class="name">
-                            ${p.name}
-                            <span class="badge">${p.category}</span>
-                        </div>
+                        <div class="name">${p.name}<span class="badge">${p.category}</span></div>
                         <div class="category">${p.category}</div>
                         <div class="rating">${starsHtml} <span>(${p.ratingCount || 0})</span></div>
                         <div class="price">$${p.price.toFixed(2)}</div>
@@ -1730,10 +1714,7 @@
                 e.stopPropagation();
                 const id = parseInt(this.dataset.id);
                 const product = products.find(p => p.id === id);
-                if (product) {
-                    addToCart(product);
-                    addSale(product.price);
-                }
+                if (product) { addToCart(product); addSale(product.price); }
             });
         });
     }
@@ -1766,21 +1747,16 @@
         const totalSales = salesData.totalSales;
         const totalOrders = salesData.totalOrders;
         const avgOrder = totalOrders > 0 ? totalRev / totalOrders : 0;
-
         totalSalesEl.textContent = totalSales;
         totalRevenueEl.textContent = `$${totalRev.toFixed(2)}`;
         totalOrdersEl.textContent = totalOrders;
         avgOrderEl.textContent = `$${avgOrder.toFixed(2)}`;
 
         const ctx = document.getElementById('salesChart').getContext('2d');
-        if (chartInstance) {
-            chartInstance.destroy();
-        }
-
-        const isDark = document.body.classList.contains('dark-theme');
+        if (chartInstance) chartInstance.destroy();
+        const isDark = document.body.classList.contains('dark');
         const textColor = isDark ? '#e2e8f0' : '#0f172a';
         const gridColor = isDark ? '#2a2a4a' : '#eef2f6';
-
         chartInstance = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -1813,32 +1789,18 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        labels: {
-                            color: textColor,
-                            font: { weight: '500', size: 12 },
-                            boxWidth: 12,
-                            padding: 16,
-                        }
+                        labels: { color: textColor, font: { weight: '500', size: 12 }, boxWidth: 12, padding: 16 }
                     }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: gridColor },
-                        ticks: { color: textColor }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: textColor }
-                    }
+                    y: { beginAtZero: true, grid: { color: gridColor }, ticks: { color: textColor } },
+                    x: { grid: { display: false }, ticks: { color: textColor } }
                 }
             }
         });
     }
 
-    // ============================================================
-    //  CART
-    // ============================================================
+    // Cart
     function updateCartBadge() {
         const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
         cartBadge.textContent = totalItems;
@@ -1846,20 +1808,13 @@
 
     function renderCart() {
         if (cart.length === 0) {
-            cartItems.innerHTML = `
-                <div class="empty">
-                    <i class="fas fa-cart-plus"></i>
-                    <p>Your cart is empty.</p>
-                </div>
-            `;
+            cartItems.innerHTML = `<div class="empty"><i class="fas fa-cart-plus"></i><p>Your cart is empty.</p></div>`;
             cartFooter.style.display = 'none';
             return;
         }
 
         cartItems.innerHTML = cart.map((item, index) => {
-            const imageHtml = item.image
-                ? `<img src="${item.image}" alt="${item.name}" />`
-                : `<i class="fas fa-cube"></i>`;
+            const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name}" />` : `<i class="fas fa-cube"></i>`;
             return `
                 <div class="cart-item">
                     <div class="item-image">${imageHtml}</div>
@@ -1884,11 +1839,7 @@
 
     function addToCart(product) {
         const existing = cart.find(item => item.id === product.id);
-        if (existing) {
-            existing.qty += 1;
-        } else {
-            cart.push({ ...product, qty: 1 });
-        }
+        if (existing) { existing.qty += 1; } else { cart.push({ ...product, qty: 1 }); }
         updateCartBadge();
         renderCart();
         showToast(`🛒 ${product.name} added to cart`);
@@ -1897,9 +1848,7 @@
     window.updateCartQty = function(index, delta) {
         if (cart[index]) {
             cart[index].qty += delta;
-            if (cart[index].qty <= 0) {
-                cart.splice(index, 1);
-            }
+            if (cart[index].qty <= 0) cart.splice(index, 1);
             updateCartBadge();
             renderCart();
         }
@@ -1924,60 +1873,29 @@
         document.body.style.overflow = '';
     }
 
-    // ============================================================
-    //  SAVE PRODUCT
-    // ============================================================
+    // Save Product
     function saveProductFromForm() {
         const name = nameInput.value.trim();
         const price = parseFloat(priceInput.value);
         const category = categoryInput.value;
         const description = descInput.value.trim();
 
-        if (!name) {
-            showToast('⚠️ Please enter a product name.');
-            nameInput.focus();
-            return false;
-        }
-        if (isNaN(price) || price <= 0) {
-            showToast('⚠️ Please enter a valid price.');
-            priceInput.focus();
-            return false;
-        }
-        if (!category) {
-            showToast('⚠️ Please select a category.');
-            categoryInput.focus();
-            return false;
-        }
-        if (!description) {
-            showToast('⚠️ Please enter a description.');
-            descInput.focus();
-            return false;
-        }
+        if (!name) { showToast('⚠️ Please enter a product name.'); nameInput.focus(); return false; }
+        if (isNaN(price) || price <= 0) { showToast('⚠️ Please enter a valid price.'); priceInput.focus(); return false; }
+        if (!category) { showToast('⚠️ Please select a category.'); categoryInput.focus(); return false; }
+        if (!description) { showToast('⚠️ Please enter a description.'); descInput.focus(); return false; }
 
         let imageData = null;
         const img = document.querySelector('#fileLabel img');
-        if (img) {
-            imageData = img.src;
-        }
+        if (img) imageData = img.src;
 
         if (editingProductId) {
             const idx = products.findIndex(p => p.id === editingProductId);
-            if (idx !== -1) {
-                products[idx] = { ...products[idx], name, price, category, description, image: imageData };
-            }
+            if (idx !== -1) products[idx] = { ...products[idx], name, price, category, description, image: imageData };
             editingProductId = null;
             showToast('✅ Product updated!');
         } else {
-            const newProduct = {
-                id: nextId++,
-                name,
-                price,
-                category,
-                description,
-                image: imageData,
-                rating: 0,
-                ratingCount: 0,
-            };
+            const newProduct = { id: nextId++, name, price, category, description, image: imageData, rating: 0, ratingCount: 0 };
             products.push(newProduct);
             showToast('✅ Product added!');
         }
@@ -2014,9 +1932,7 @@
         reader.readAsDataURL(file);
     }
 
-    // ============================================================
-    //  GOOGLE SIGN-IN
-    // ============================================================
+    // Google Sign-In
     async function signInWithGoogle() {
         try {
             const result = await auth.signInWithPopup(googleProvider);
@@ -2034,37 +1950,28 @@
             showPage('homePage');
             showToast(`👋 Welcome ${user.displayName || user.email}`);
         } catch (error) {
-            if (error.code !== 'popup-closed-by-user') {
-                showToast('⚠️ Google sign-in failed');
-            }
+            if (error.code !== 'popup-closed-by-user') showToast('⚠️ Google sign-in failed');
         }
     }
 
-    // ============================================================
-    //  AUTH
-    // ============================================================
+    // Auth
     loginForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const email = loginEmail.value.trim();
         const password = loginPassword.value;
-
         loginError.style.display = 'none';
         loginSuccess.style.display = 'none';
-
         try {
             const userCredential = await auth.signInWithEmailAndPassword(email, password);
             const user = userCredential.user;
-            
             if (!user.emailVerified) {
                 await auth.signOut();
                 loginError.textContent = '⚠️ Please verify your email.';
                 loginError.style.display = 'block';
                 return;
             }
-
             loginSuccess.textContent = '✅ Login successful!';
             loginSuccess.style.display = 'block';
-            
             currentUser = user;
             checkSellerRole(user);
             showPage('homePage');
@@ -2083,31 +1990,24 @@
         e.preventDefault();
         const email = signupEmail.value.trim();
         const password = signupPassword.value;
-
         signupError.style.display = 'none';
         signupSuccess.style.display = 'none';
-
         if (password.length < 6) {
             signupError.textContent = '⚠️ Password must be at least 6 characters.';
             signupError.style.display = 'block';
             return;
         }
-
         try {
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
-            
             await user.sendEmailVerification();
-            
             await db.collection('users').doc(user.uid).set({
                 email: email,
                 role: 'customer',
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-
             signupSuccess.textContent = '✅ Account created! Check your email to verify.';
             signupSuccess.style.display = 'block';
-            
             await auth.signOut();
             showLoginPage();
             showToast('📧 Verification email sent!');
@@ -2141,9 +2041,7 @@
     showSignupBtn.addEventListener('click', showSignupPage);
     showLoginBtn.addEventListener('click', showLoginPage);
 
-    // ============================================================
-    //  AUTH STATE
-    // ============================================================
+    // Auth State
     auth.onAuthStateChanged(async function(user) {
         if (user) {
             currentUser = user;
@@ -2166,25 +2064,14 @@
         }
     });
 
-    // ============================================================
-    //  EVENT LISTENERS
-    // ============================================================
-
-    // Premium
+    // Event Listeners
     document.getElementById('premiumBtn').addEventListener('click', function() {
-        if (!currentUser) {
-            showToast('⚠️ Please login first');
-            showPage('loginPage');
-            return;
-        }
+        if (!currentUser) { showToast('⚠️ Please login first'); showPage('loginPage'); return; }
         showPage('premiumPage');
     });
 
-    document.getElementById('cancelPremiumBtn').addEventListener('click', function() {
-        showPage('homePage');
-    });
+    document.getElementById('cancelPremiumBtn').addEventListener('click', function() { showPage('homePage'); });
 
-    // Payment methods
     document.querySelectorAll('.method').forEach(method => {
         method.addEventListener('click', function() {
             document.querySelectorAll('.method').forEach(m => m.classList.remove('active'));
@@ -2202,24 +2089,16 @@
 
     document.getElementById('paymentForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        if (!currentUser) {
-            showToast('⚠️ Please login first');
-            showPage('loginPage');
-            return;
-        }
+        if (!currentUser) { showToast('⚠️ Please login first'); showPage('loginPage'); return; }
         const method = document.querySelector('.method.active').dataset.method;
         showToast(`✅ Premium activated! Payment: ${method === 'card' ? 'Credit Card' : 'PayPal'}`);
         showPage('homePage');
     });
 
-    // Profile dropdown
     profileToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        if (!currentUser) {
-            showPage('loginPage');
-            return;
-        }
+        if (!currentUser) { showPage('loginPage'); return; }
         dropdownMenu.classList.toggle('open');
     });
 
@@ -2229,22 +2108,12 @@
         }
     });
 
-    // Dropdown items
     document.querySelectorAll('.dropdown-item[data-page]').forEach(item => {
         item.addEventListener('click', function() {
             const pageId = this.dataset.page;
-            if (!currentUser) {
-                showPage('loginPage');
-                return;
-            }
-            if (pageId === 'addProductPage' && !isSeller) {
-                showToast('⚠️ Only sellers can add products');
-                return;
-            }
-            if (pageId === 'dashboardPage' && !isSeller) {
-                showToast('⚠️ Only sellers can view dashboard');
-                return;
-            }
+            if (!currentUser) { showPage('loginPage'); return; }
+            if (pageId === 'addProductPage' && !isSeller) { showToast('⚠️ Only sellers can add products'); return; }
+            if (pageId === 'dashboardPage' && !isSeller) { showToast('⚠️ Only sellers can view dashboard'); return; }
             showPage(pageId);
             if (pageId === 'addProductPage') {
                 editingProductId = null;
@@ -2262,28 +2131,15 @@
         });
     });
 
-    // Home logo
     document.getElementById('homeLogo').addEventListener('click', function() {
-        if (currentUser) {
-            showPage('homePage');
-        } else {
-            showPage('loginPage');
-        }
+        if (currentUser) { showPage('homePage'); } else { showPage('loginPage'); }
     });
 
-    // Cancel
-    cancelBtn.addEventListener('click', function() {
-        showPage('homePage');
-    });
+    cancelBtn.addEventListener('click', function() { showPage('homePage'); });
 
-    // Cart
     cartToggle.addEventListener('click', function(e) {
         e.preventDefault();
-        if (!currentUser) {
-            showToast('⚠️ Please login first');
-            showPage('loginPage');
-            return;
-        }
+        if (!currentUser) { showToast('⚠️ Please login first'); showPage('loginPage'); return; }
         openCart();
     });
 
@@ -2291,10 +2147,7 @@
     cartOverlay.addEventListener('click', closeCart);
 
     checkoutBtn.addEventListener('click', function() {
-        if (cart.length === 0) {
-            showToast('⚠️ Your cart is empty.');
-            return;
-        }
+        if (cart.length === 0) { showToast('⚠️ Your cart is empty.'); return; }
         const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
         showToast(`✅ Order placed! Total: $${total.toFixed(2)}`);
         cart = [];
@@ -2303,18 +2156,10 @@
         closeCart();
     });
 
-    // Form
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        if (!currentUser) {
-            showToast('⚠️ Please login first');
-            showPage('loginPage');
-            return;
-        }
-        if (!isSeller) {
-            showToast('⚠️ Only sellers can add products');
-            return;
-        }
+        if (!currentUser) { showToast('⚠️ Please login first'); showPage('loginPage'); return; }
+        if (!isSeller) { showToast('⚠️ Only sellers can add products'); return; }
         saveProductFromForm();
     });
 
@@ -2333,7 +2178,6 @@
 
     document.getElementById('imageFileInput').addEventListener('change', handleImageFile);
 
-    // Filters
     categoryFilter.addEventListener('change', renderProducts);
     priceFilter.addEventListener('input', renderProducts);
     resetFiltersBtn.addEventListener('click', function() {
@@ -2342,29 +2186,21 @@
         renderProducts();
     });
 
-    // Theme toggle - FIXED
+    // Theme toggle
     themeToggle.addEventListener('click', function() {
         darkMode = !darkMode;
-        document.body.classList.toggle('dark-theme', darkMode);
-        themeIcon.className = darkMode ? 'fas fa-sun' : 'fas fa-moon';
-        themeLabel.textContent = darkMode ? 'Light' : 'Dark';
-        if (dashboardPage.classList.contains('active')) {
-            setTimeout(updateDashboard, 50);
-        }
+        document.body.classList.toggle('dark', darkMode);
+        themeToggle.textContent = darkMode ? '☀️ Light' : '🌙 Dark';
+        if (dashboardPage.classList.contains('active')) setTimeout(updateDashboard, 50);
     });
 
-    // ============================================================
-    //  INIT
-    // ============================================================
+    // Init
     showLoginPage();
     showPage('loginPage');
-    
     addProductMenuItem.style.display = 'none';
     dashboardMenuItem.style.display = 'none';
-
     updateCartBadge();
     renderCart();
-
     console.log('✅ OXAVO MARKET ready!');
     console.log(`📧 Seller email: ${SELLER_EMAIL}`);
 </script>
