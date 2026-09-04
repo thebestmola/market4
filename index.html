@@ -1397,36 +1397,25 @@
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-    // Obfuscated Firebase configuration
-    const _config = [
-        'QUl6YVN5RHpReTRVZEFqcUd3SnROWGVGaWZvQ19oT1psWkdOUTA=',
-        'b3hhdm8tbWFya2V0LmZpcmViYXNlYXBwLmNvbQ==',
-        'b3hhdm8tbWFya2V0',
-        'b3hhdm8tbWFya2V0LmZpcmViYXNlLmFwcA==',
-        'MzYyMzIzMDEzOTk3',
-        'MTozNjIzMjMwMTM5OTc6d2ViOjlkYjM4ZmRkNjIxM2FiNjA2ZjZhNjQ=',
-        'YW1hcmFhYmR1YWxpbGxhaEBnbWFpbC5jb20='
-    ];
-
-    function _decrypt(index) {
-        return atob(_config[index]);
-    }
-
+    // Firebase configuration (visible but necessary for Google Auth)
     const firebaseConfig = {
-        apiKey: _decrypt(0),
-        authDomain: _decrypt(1),
-        projectId: _decrypt(2),
-        storageBucket: _decrypt(3),
-        messagingSenderId: _decrypt(4),
-        appId: _decrypt(5)
+        apiKey: "AIzaSyDzQy4UdAjqGwJtNXeFifoC_hZOrlZGNQ0",
+        authDomain: "oxavo-market.firebaseapp.com",
+        projectId: "oxavo-market",
+        storageBucket: "oxavo-market.firebasestorage.app",
+        messagingSenderId: "362323013997",
+        appId: "1:362323013997:web:9db38fdd6213ab606f6a64"
     };
+    
+    // Hidden seller email
+    const SELLER_EMAIL = atob('YW1hcmFhYmR1YWxpbGxhaEBnbWFpbC5jb20=');
 
-    const SELLER_EMAIL = _decrypt(6);
-
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
+    googleProvider.setCustomParameters({ prompt: 'select_account' });
 
     let products = [];
     let nextId = 1;
@@ -1745,6 +1734,46 @@
         }
     }
 
+    // Google Sign-In function
+    async function signInWithGoogle() {
+        try {
+            const result = await auth.signInWithPopup(googleProvider);
+            const user = result.user;
+            
+            // Check if user exists in Firestore
+            const userDoc = await db.collection('users').doc(user.uid).get();
+            if (!userDoc.exists) {
+                await db.collection('users').doc(user.uid).set({
+                    email: user.email,
+                    name: user.displayName || '',
+                    photoURL: user.photoURL || '',
+                    role: 'customer',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
+            
+            currentUser = user;
+            checkSellerRole(user);
+            showPage('homePage');
+            showToast(`👋 Welcome ${user.displayName || user.email}`);
+            return user;
+        } catch (error) {
+            console.error('Google sign-in error:', error);
+            if (error.code === 'auth/popup-blocked') {
+                showToast('⚠️ Popup blocked! Please allow popups for this site.');
+            } else if (error.code === 'auth/popup-closed-by-user') {
+                showToast('⚠️ Sign-in cancelled');
+            } else if (error.code === 'auth/unauthorized-domain') {
+                showToast('⚠️ This domain is not authorized for Google sign-in');
+            } else if (error.code === 'auth/operation-not-allowed') {
+                showToast('⚠️ Google sign-in is not enabled in Firebase Console');
+            } else {
+                showToast('⚠️ Google sign-in failed: ' + error.message);
+            }
+            return null;
+        }
+    }
+
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value.trim();
@@ -1784,31 +1813,8 @@
         }
     });
 
-    document.getElementById('googleSignInBtn').addEventListener('click', async () => {
-        try {
-            const result = await auth.signInWithPopup(googleProvider);
-            currentUser = result.user;
-            checkSellerRole(currentUser);
-            showPage('homePage');
-            showToast(`👋 Welcome ${currentUser.displayName || currentUser.email}`);
-        } catch (error) {
-            if (error.code !== 'popup-closed-by-user') showToast('⚠️ Google sign-in failed');
-        }
-    });
-
-    document.getElementById('googleSignUpBtn').addEventListener('click', async () => {
-        try {
-            const result = await auth.signInWithPopup(googleProvider);
-            const user = result.user;
-            await db.collection('users').doc(user.uid).set({ email: user.email, role: 'customer', createdAt: firebase.firestore.FieldValue.serverTimestamp() });
-            currentUser = user;
-            checkSellerRole(user);
-            showPage('homePage');
-            showToast(`👋 Welcome ${user.displayName || user.email}`);
-        } catch (error) {
-            if (error.code !== 'popup-closed-by-user') showToast('⚠️ Google sign-up failed');
-        }
-    });
+    document.getElementById('googleSignInBtn').addEventListener('click', signInWithGoogle);
+    document.getElementById('googleSignUpBtn').addEventListener('click', signInWithGoogle);
 
     document.getElementById('switchToSignup').addEventListener('click', showSignupPage);
     document.getElementById('switchToLogin').addEventListener('click', showLoginPage);
@@ -1969,7 +1975,7 @@
     showPage('loginPage');
     addProductMenuItem.style.display = 'none';
     dashboardMenuItem.style.display = 'none';
-    console.log('✅ OXAVO MARKET ready - No demo products');
+    console.log('✅ OXAVO MARKET ready - Google Sign-In working');
 </script>
 </body>
 </html>
