@@ -15,7 +15,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: #f6f9fc;
@@ -26,20 +25,16 @@
             flex-direction: column;
             transition: background 0.3s, color 0.3s;
         }
-
         body.dark {
             background: #0d0d1a;
             color: #e2e8f0;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
             width: 100%;
         }
-
-        /* HEADER */
         .header {
             background: #ffffff;
             padding: 16px 0;
@@ -49,12 +44,10 @@
             z-index: 100;
             transition: background 0.3s, border-color 0.3s;
         }
-
         body.dark .header {
             background: #0a0a1a;
             border-color: #2a2a4a;
         }
-
         .header-content {
             display: flex;
             align-items: center;
@@ -62,14 +55,12 @@
             flex-wrap: wrap;
             gap: 16px;
         }
-
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
         }
-
         .logo-icon {
             width: 42px;
             height: 42px;
@@ -82,7 +73,6 @@
             font-size: 1.2rem;
             font-weight: 800;
         }
-
         .logo-text .brand {
             font-size: 1.2rem;
             font-weight: 800;
@@ -97,13 +87,11 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
         .header-actions {
             display: flex;
             align-items: center;
             gap: 14px;
         }
-
         .theme-toggle {
             background: transparent;
             border: 1px solid #dce0e5;
@@ -122,7 +110,6 @@
             border-color: #6c5ce7;
             color: #6c5ce7;
         }
-
         .profile-icon {
             font-size: 1.5rem;
             color: #64748b;
@@ -130,10 +117,10 @@
             background: none;
             border: none;
             transition: 0.2s;
+            position: relative;
         }
         body.dark .profile-icon { color: #94a3b8; }
         .profile-icon:hover { color: #6c5ce7; }
-
         .cart-icon {
             font-size: 1.3rem;
             color: #64748b;
@@ -156,8 +143,6 @@
             top: -8px;
             right: -10px;
         }
-
-        /* DROPDOWN */
         .dropdown-menu {
             position: absolute;
             right: 20px;
@@ -195,8 +180,6 @@
         body.dark .dropdown-item:hover { background: #1a1a3a; color: #8b7cf7; }
         .dropdown-divider { height: 1px; background: #eef2f6; margin: 4px 12px; }
         body.dark .dropdown-divider { background: #2a2a4a; }
-
-        /* HERO */
         .hero {
             padding: 40px 0 20px 0;
             text-align: center;
@@ -217,12 +200,9 @@
             margin: 8px auto 0;
         }
         body.dark .hero p { color: #94a3b8; }
-
-        /* PRODUCTS */
         .products-section {
             padding: 30px 0 60px 0;
         }
-
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -237,7 +217,6 @@
             color: #0f172a;
         }
         body.dark .section-header h2 { color: #f1f5f9; }
-
         .filter-group {
             display: flex;
             gap: 10px;
@@ -264,7 +243,6 @@
         .filter-group input:focus {
             border-color: #6c5ce7;
         }
-
         .btn-outline {
             background: transparent;
             color: #0f172a;
@@ -284,13 +262,11 @@
             border-color: #6c5ce7;
             color: #6c5ce7;
         }
-
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 24px;
         }
-
         .product-card {
             background: #ffffff;
             border-radius: 16px;
@@ -310,7 +286,6 @@
         body.dark .product-card:hover {
             box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
-
         .product-card .card-image {
             height: 180px;
             background: #f8f8f8;
@@ -331,7 +306,6 @@
             object-fit: contain;
             padding: 12px;
         }
-
         .product-card .card-body {
             padding: 16px 18px 18px 18px;
         }
@@ -403,7 +377,6 @@
         .product-card .card-body .actions .btn-add:hover {
             background: #6c5ce7;
         }
-
         .no-products {
             text-align: center;
             padding: 60px 20px;
@@ -411,8 +384,6 @@
             grid-column: 1 / -1;
         }
         body.dark .no-products { color: #94a3b8; }
-
-        /* LOGIN */
         .login-page {
             max-width: 420px;
             margin: 40px auto;
@@ -426,7 +397,6 @@
             background: #16162e;
             border-color: #2a2a4a;
         }
-
         .login-page .login-header {
             text-align: center;
             margin-bottom: 28px;
@@ -447,7 +417,6 @@
             font-size: 0.9rem;
         }
         body.dark .login-page .login-header p { color: #94a3b8; }
-
         .login-form {
             display: flex;
             flex-direction: column;
@@ -482,7 +451,6 @@
         .login-form .form-group input:focus {
             border-color: #6c5ce7;
         }
-
         .login-form .btn-login {
             padding: 14px;
             background: #0f172a;
@@ -497,7 +465,6 @@
         }
         body.dark .login-form .btn-login { background: #6c5ce7; }
         .login-form .btn-login:hover { background: #6c5ce7; }
-
         .login-form .divider {
             text-align: center;
             color: #64748b;
@@ -519,7 +486,6 @@
         body.dark .login-form .divider::after { background: #2a2a4a; }
         .login-form .divider::before { left: 0; }
         .login-form .divider::after { right: 0; }
-
         .login-form .btn-google {
             padding: 12px;
             background: #ffffff;
@@ -542,7 +508,6 @@
         }
         .login-form .btn-google:hover { border-color: #6c5ce7; }
         .login-form .btn-google i { color: #ea4335; font-size: 1.2rem; }
-
         .login-form .switch {
             text-align: center;
             font-size: 0.9rem;
@@ -554,7 +519,6 @@
             font-weight: 600;
             cursor: pointer;
         }
-
         .login-form .error-msg {
             color: #ef4444;
             font-size: 0.85rem;
@@ -573,8 +537,6 @@
             border-radius: 8px;
             display: none;
         }
-
-        /* CART SIDEBAR */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -588,7 +550,6 @@
             transition: 0.3s;
         }
         .cart-overlay.open { opacity: 1; pointer-events: auto; }
-
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -609,7 +570,6 @@
             border-color: #2a2a4a;
         }
         .cart-sidebar.open { right: 0; }
-
         .cart-sidebar .cart-header {
             padding: 20px 24px;
             border-bottom: 1px solid #eef2f6;
@@ -633,7 +593,6 @@
             color: #64748b;
         }
         body.dark .cart-sidebar .cart-header .close { color: #94a3b8; }
-
         .cart-sidebar .cart-items {
             flex: 1;
             overflow-y: auto;
@@ -651,7 +610,6 @@
             margin-bottom: 8px;
             opacity: 0.4;
         }
-
         .cart-sidebar .cart-item {
             display: flex;
             gap: 12px;
@@ -741,7 +699,6 @@
         }
         body.dark .cart-sidebar .cart-item .item-remove { color: #94a3b8; }
         .cart-sidebar .cart-item .item-remove:hover { color: #ef4444; }
-
         .cart-sidebar .cart-footer {
             padding: 16px 24px 24px;
             border-top: 1px solid #eef2f6;
@@ -770,8 +727,6 @@
         }
         body.dark .cart-sidebar .cart-footer .btn-checkout { background: #6c5ce7; }
         .cart-sidebar .cart-footer .btn-checkout:hover { background: #6c5ce7; }
-
-        /* ADD PRODUCT */
         .add-product-page {
             max-width: 640px;
             margin: 0 auto;
@@ -798,7 +753,6 @@
             margin-bottom: 24px;
         }
         body.dark .add-product-page .card .sub { color: #94a3b8; }
-
         .add-product-form {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -843,7 +797,6 @@
             border-color: #6c5ce7;
         }
         .add-product-form .form-group textarea { resize: vertical; min-height: 70px; }
-
         .add-product-form .file-upload {
             grid-column: 1 / -1;
             display: flex;
@@ -864,6 +817,8 @@
             transition: 0.3s;
             overflow: hidden;
             position: relative;
+            text-align: center;
+            padding: 8px;
         }
         body.dark .add-product-form .file-upload .file-label {
             background: #1a1a3a;
@@ -887,13 +842,14 @@
             width: 100%;
             height: 100%;
             cursor: pointer;
+            top: 0;
+            left: 0;
         }
         .add-product-form .file-upload .file-label img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .add-product-form .form-actions {
             grid-column: 1 / -1;
             display: flex;
@@ -931,8 +887,6 @@
         }
         body.dark .add-product-form .form-actions .btn-submit { background: #6c5ce7; }
         .add-product-form .form-actions .btn-submit:hover { background: #6c5ce7; }
-
-        /* DASHBOARD */
         .dashboard-page {
             max-width: 900px;
             margin: 0 auto;
@@ -949,7 +903,6 @@
             margin-bottom: 24px;
         }
         body.dark .dashboard-page .sub { color: #94a3b8; }
-
         .stats-grid-dash {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -979,7 +932,6 @@
             color: #0f172a;
         }
         body.dark .stats-grid-dash .stat-card .value { color: #f1f5f9; }
-
         .chart-container {
             background: #ffffff;
             padding: 24px;
@@ -998,8 +950,6 @@
         }
         body.dark .chart-container h3 { color: #f1f5f9; }
         .chart-container .chart-wrapper { height: 240px; }
-
-        /* PREMIUM */
         .premium-page {
             max-width: 520px;
             margin: 0 auto;
@@ -1066,7 +1016,6 @@
         }
         body.dark .premium-page .card .price-box .features span { color: #94a3b8; }
         .premium-page .card .price-box .features span i { color: #22c55e; }
-
         .premium-page .card .payment-form {
             display: flex;
             flex-direction: column;
@@ -1167,8 +1116,6 @@
             color: #e2e8f0;
         }
         .premium-page .card .payment-form .btn-cancel:hover { border-color: #6c5ce7; }
-
-        /* FOOTER */
         .footer {
             background: #ffffff;
             border-top: 1px solid #eef2f6;
@@ -1201,8 +1148,6 @@
         body.dark .footer-links a { color: #94a3b8; }
         .footer-links a:hover { color: #0f172a; }
         body.dark .footer-links a:hover { color: #f1f5f9; }
-
-        /* TOAST */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -1233,8 +1178,6 @@
             pointer-events: auto;
         }
         .toast i { color: #4ade80; }
-
-        /* PAGE UTILITY */
         .page {
             display: none;
             padding: 20px 0 40px 0;
@@ -1243,13 +1186,10 @@
             display: block;
             animation: fadeUp 0.5s ease;
         }
-
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
@@ -1266,7 +1206,6 @@
             .header-content { gap: 10px; }
             .logo-text .brand { font-size: 1rem; }
         }
-
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.6rem; }
             .product-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -1277,8 +1216,6 @@
     </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <header class="header">
     <div class="container header-content">
         <div class="logo" id="homeLogo">
@@ -1298,17 +1235,15 @@
         </div>
     </div>
 </header>
-
-<!-- DROPDOWN -->
 <div class="dropdown-menu" id="dropdownMenu">
     <button class="dropdown-item" data-page="homePage"><i class="fas fa-home"></i> Home</button>
     <button class="dropdown-item" data-page="addProductPage" id="addProductMenuItem" style="display:none;"><i class="fas fa-plus-circle"></i> Add product</button>
     <button class="dropdown-item" data-page="dashboardPage" id="dashboardMenuItem" style="display:none;"><i class="fas fa-chart-line"></i> Dashboard</button>
     <div class="dropdown-divider"></div>
+    <button class="dropdown-item" id="premiumBtn"><i class="fas fa-crown"></i> Premium</button>
+    <div class="dropdown-divider"></div>
     <button class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
 </div>
-
-<!-- CART -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
@@ -1323,15 +1258,9 @@
         <button class="btn-checkout" id="checkoutBtn">Proceed to Checkout</button>
     </div>
 </div>
-
-<!-- TOAST -->
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage">Added to cart</span></div>
-
-<!-- MAIN -->
 <main>
     <div class="container">
-
-        <!-- LOGIN -->
         <div class="page" id="loginPage">
             <div class="login-page">
                 <div class="login-header">
@@ -1377,14 +1306,11 @@
                 </form>
             </div>
         </div>
-
-        <!-- HOME -->
         <div class="page active" id="homePage">
             <section class="hero">
                 <h1>Welcome to <span>OXAVO MARKET</span></h1>
                 <p>Discover amazing products from trusted sellers. Browse, shop, and enjoy.</p>
             </section>
-
             <section class="products-section">
                 <div class="section-header">
                     <h2>🛍️ All Products</h2>
@@ -1397,8 +1323,6 @@
                 <div class="product-grid" id="productGrid"></div>
             </section>
         </div>
-
-        <!-- ADD PRODUCT -->
         <div class="page" id="addProductPage">
             <div class="add-product-page">
                 <div class="card">
@@ -1456,8 +1380,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- DASHBOARD -->
         <div class="page" id="dashboardPage">
             <div class="dashboard-page">
                 <h2>📊 Dashboard</h2>
@@ -1474,8 +1396,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- PREMIUM -->
         <div class="page" id="premiumPage">
             <div class="premium-page">
                 <div class="card">
@@ -1514,11 +1434,8 @@
                 </div>
             </div>
         </div>
-
     </div>
 </main>
-
-<!-- FOOTER -->
 <footer class="footer">
     <div class="container footer-content">
         <span>© 2026 OXAVO MARKET. All rights reserved.</span>
@@ -1531,10 +1448,8 @@
         </div>
     </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-    // Firebase Config
     const firebaseConfig = {
         apiKey: "AIzaSyDzQy4UdAjqGwJtNXeFifoC_hZOrlZGNQ0",
         authDomain: "oxavo-market.firebaseapp.com",
@@ -1548,9 +1463,14 @@
     const db = firebase.firestore();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-    // State
-    let products = [];
-    let nextId = 1;
+    let products = [
+        { id: 1, name: "Wireless Headphones", price: 89.99, category: "Audio", description: "Noise cancelling", rating: 4, ratingCount: 120, image: null },
+        { id: 2, name: "Smart Watch", price: 199.00, category: "Wearables", description: "Fitness tracker", rating: 5, ratingCount: 85, image: null },
+        { id: 3, name: "Coffee Maker", price: 49.50, category: "Kitchen", description: "12-cup programmable", rating: 3, ratingCount: 45, image: null },
+        { id: 4, name: "Running Shoes", price: 120.00, category: "Fashion", description: "Lightweight and durable", rating: 4, ratingCount: 210, image: null },
+        { id: 5, name: "Desk Lamp", price: 35.00, category: "Home", description: "LED with USB port", rating: 4, ratingCount: 67, image: null },
+    ];
+    let nextId = 6;
     let cart = [];
     let currentUser = null;
     let isSeller = false;
@@ -1565,7 +1485,6 @@
     let chartInstance = null;
     let editingProductId = null;
 
-    // DOM
     const homePage = document.getElementById('homePage');
     const loginPage = document.getElementById('loginPage');
     const productGrid = document.getElementById('productGrid');
@@ -1590,21 +1509,17 @@
     const dashboardMenuItem = document.getElementById('dashboardMenuItem');
     const googleSignInBtn = document.getElementById('googleSignInBtn');
     const googleSignUpBtn = document.getElementById('googleSignUpBtn');
-
     const categoryFilter = document.getElementById('categoryFilter');
     const priceFilter = document.getElementById('priceFilter');
     const resetFiltersBtn = document.getElementById('resetFilters');
-
     const nameInput = document.getElementById('productNameInput');
     const priceInput = document.getElementById('productPriceInput');
     const categoryInput = document.getElementById('productCategoryInput');
     const descInput = document.getElementById('productDescInput');
     const imageFileInput = document.getElementById('imageFileInput');
-
     const form = document.getElementById('productForm');
     const resetBtn = document.getElementById('resetFormBtn');
     const cancelBtn = document.getElementById('cancelBtn');
-
     const cartBadge = document.getElementById('cartCount');
     const cartToggle = document.getElementById('cartToggle');
     const cartSidebar = document.getElementById('cartSidebar');
@@ -1614,20 +1529,16 @@
     const cartFooter = document.getElementById('cartFooter');
     const cartTotal = document.getElementById('cartTotal');
     const checkoutBtn = document.getElementById('checkoutBtn');
-
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMessage');
-
     const totalSalesEl = document.getElementById('totalSales');
     const totalRevenueEl = document.getElementById('totalRevenue');
     const totalOrdersEl = document.getElementById('totalOrders');
     const avgOrderEl = document.getElementById('avgOrder');
-
     const themeToggle = document.getElementById('themeToggle');
 
     let darkMode = false;
 
-    // Utility
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         const page = document.getElementById(pageId);
@@ -1675,7 +1586,6 @@
         }
     }
 
-    // Products
     function renderProducts() {
         const category = categoryFilter.value;
         const maxPrice = parseFloat(priceFilter.value) || Infinity;
@@ -1688,7 +1598,7 @@
             return;
         }
 
-        productGrid.innerHTML = filtered.map((p, index) => {
+        productGrid.innerHTML = filtered.map(p => {
             const imageHtml = p.image ? `<img src="${p.image}" alt="${p.name}" />` : `<i class="fas fa-cube"></i>`;
             const rating = p.rating || 0;
             let starsHtml = '';
@@ -1714,7 +1624,10 @@
                 e.stopPropagation();
                 const id = parseInt(this.dataset.id);
                 const product = products.find(p => p.id === id);
-                if (product) { addToCart(product); addSale(product.price); }
+                if (product) { 
+                    addToCart(product); 
+                    addSale(product.price);
+                }
             });
         });
     }
@@ -1800,7 +1713,6 @@
         });
     }
 
-    // Cart
     function updateCartBadge() {
         const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
         cartBadge.textContent = totalItems;
@@ -1873,7 +1785,6 @@
         document.body.style.overflow = '';
     }
 
-    // Save Product
     function saveProductFromForm() {
         const name = nameInput.value.trim();
         const price = parseFloat(priceInput.value);
@@ -1932,7 +1843,6 @@
         reader.readAsDataURL(file);
     }
 
-    // Google Sign-In
     async function signInWithGoogle() {
         try {
             const result = await auth.signInWithPopup(googleProvider);
@@ -1954,7 +1864,6 @@
         }
     }
 
-    // Auth
     loginForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const email = loginEmail.value.trim();
@@ -2041,7 +1950,6 @@
     showSignupBtn.addEventListener('click', showSignupPage);
     showLoginBtn.addEventListener('click', showLoginPage);
 
-    // Auth State
     auth.onAuthStateChanged(async function(user) {
         if (user) {
             currentUser = user;
@@ -2064,7 +1972,6 @@
         }
     });
 
-    // Event Listeners
     document.getElementById('premiumBtn').addEventListener('click', function() {
         if (!currentUser) { showToast('⚠️ Please login first'); showPage('loginPage'); return; }
         showPage('premiumPage');
@@ -2186,15 +2093,16 @@
         renderProducts();
     });
 
-    // Theme toggle
     themeToggle.addEventListener('click', function() {
         darkMode = !darkMode;
         document.body.classList.toggle('dark', darkMode);
         themeToggle.textContent = darkMode ? '☀️ Light' : '🌙 Dark';
-        if (dashboardPage.classList.contains('active')) setTimeout(updateDashboard, 50);
+        if (document.getElementById('dashboardPage').classList.contains('active')) setTimeout(updateDashboard, 50);
     });
 
-    // Init
+    // Initialize
+    updateCategoryFilter();
+    renderProducts();
     showLoginPage();
     showPage('loginPage');
     addProductMenuItem.style.display = 'none';
